@@ -1,0 +1,65 @@
+/* Estilo para o navbar */
+.navbar {
+  background: linear-gradient(90deg, #749970 0%, #b0d5ac 100%); /* Degradê de roxo para azul */
+  padding: 15px;
+ }
+
+.navbar-brand, .nav-link {
+  color: white !important; /* Links em branco para contraste */
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase; /* Letras maiúsculas */
+}
+
+.nav-link:hover {
+  color: #ffdd57 !important; /* Cor amarela no hover */
+  transition: color 0.3s ease;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%23fff" viewBox="0 0 30 30"%3E%3Cpath stroke="rgba%280, 0, 0, 0.5%29" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+}
+
+/* Estilo para o dropdown */
+.dropdown-menu {
+  background-color: #fff; /* Cor de fundo do dropdown */
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.dropdown-item {
+  color: #000;
+  font-size: 16px;
+}
+
+.dropdown-item:hover {
+  background-color: #6a11cb; /* Fundo roxo no hover */
+  color: #ffdd57;
+}
+
+.dropdown-divider {
+  border-color: white;
+}
+
+.nav-link.disabled {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.btn-outline-success {
+  background: linear-gradient(45deg, #28a745, #218838); /* Gradiente verde */
+  border: none; /* Remover a borda original */
+  color: white; /* Cor do texto */
+  padding: 10px 20px; /* Ajustar o padding */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background 0.3s ease; /* Animação suave ao passar o mouse */
+}
+
+.btn-outline-success:hover {
+  background: linear-gradient(45deg, #218838, #1e7e34); /* Cor mais escura no hover */
+}
+
+
