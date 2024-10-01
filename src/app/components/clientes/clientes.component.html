@@ -1,15 +1,14 @@
-<!-- cadastro-cliente.component.html -->
 <div class="custom-container mt-5">
   <h2 class="mb-4">Registro de Empresas e Profissionais Autônomos</h2>
   <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="row mb-3">
       <div class="col-md-6">
-        <label for="nome" class="form-label">Nome</label>
         <input
           id="nome"
           type="text"
           class="form-control"
           formControlName="nome"
+          placeholder="Razão Social"
           [ngClass]="{
             'is-invalid':
               clienteForm.get('nome')?.invalid &&
@@ -20,13 +19,13 @@
       </div>
 
       <div class="col-md-6">
-        <label for="cnpj" class="form-label">CNPJ</label>
         <input
           id="cnpj"
           name="cnpj"
           type="text"
           class="form-control"
           formControlName="cnpj"
+          placeholder="CNPJ"
           mask="00.000.000/000-00"
           [ngClass]="{
             'is-invalid':
@@ -39,12 +38,12 @@
     </div>
 
     <div class="mb-3">
-      <label for="endereco" class="form-label">Endereço</label>
       <input
         id="endereco"
         type="text"
         class="form-control"
         formControlName="endereco"
+        placeholder="Endereço"
         [ngClass]="{
           'is-invalid':
             clienteForm.get('endereco')?.invalid &&
@@ -55,12 +54,28 @@
     </div>
 
     <div class="row mb-3">
-      <div class="col-md-4">
-        <label for="cidade" class="form-label">Cidade</label>
+      <div class="col-md-3">
+        <input
+          id="cep"
+          type="text"
+          class="form-control"
+          placeholder="Cep"
+          formControlName="cep"
+          mask="00000-000"
+          [ngClass]="{
+            'is-invalid':
+              clienteForm.get('cep')?.invalid && clienteForm.get('cep')?.touched
+          }"
+        />
+        <div class="invalid-feedback">Cep é obrigatória.</div>
+      </div>
+
+      <div class="col-md-7">
         <input
           id="cidade"
           type="text"
           class="form-control"
+          placeholder="Cidade"
           formControlName="cidade"
           [ngClass]="{
             'is-invalid':
@@ -72,12 +87,12 @@
       </div>
 
       <div class="col-md-2">
-        <label for="estado" class="form-label">Estado</label>
         <input
           id="estado"
           type="text"
           class="form-control"
           formControlName="estado"
+          placeholder="UF"
           [ngClass]="{
             'is-invalid':
               clienteForm.get('estado')?.invalid &&
@@ -86,47 +101,46 @@
         />
         <div class="invalid-feedback">Estado é obrigatório.</div>
       </div>
+    </div>
 
-      <div class="col-md-6">
-        <label for="telefone" class="form-label">Telefone</label>
-        <input
-          id="telefone"
-          type="text"
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <input
+            id="telefone"
+            type="text"
+            class="form-control"
+            formControlName="telefone"
+            placeholder="Telefone"
+            mask="(00)000-000000"
+            [ngClass]="{
+              'is-invalid':
+                clienteForm.get('telefone')?.invalid &&
+                clienteForm.get('telefone')?.touched
+            }"
+          />
+          <div class="invalid-feedback">Telefone é obrigatório.</div>
+        </div>
+        <div class="col-md-7">
+          <input
+          id="email"
+          type="email"
           class="form-control"
-          formControlName="telefone"
+          formControlName="email"
+          placeholder="E-mail"
           [ngClass]="{
             'is-invalid':
-              clienteForm.get('telefone')?.invalid &&
-              clienteForm.get('telefone')?.touched
+              clienteForm.get('email')?.invalid &&
+              clienteForm.get('email')?.touched
           }"
         />
-        <div class="invalid-feedback">Telefone é obrigatório.</div>
+        <div class="invalid-feedback">E-mail válido é obrigatório.</div>
+
+        </div>
       </div>
-    </div>
 
-    <div class="mb-3">
-      <label for="email" class="form-label">E-mail</label>
-      <input
-        id="email"
-        type="email"
-        class="form-control"
-        formControlName="email"
-        [ngClass]="{
-          'is-invalid':
-            clienteForm.get('email')?.invalid &&
-            clienteForm.get('email')?.touched
-        }"
-      />
-      <div class="invalid-feedback">E-mail válido é obrigatório.</div>
-    </div>
-
-    <div class="row mb-3">
+      <div class="row mb-3">
       <div class="col-md-6" style="position: relative; top: 27px">
-        <button
-          type="submit"
-          class="btn button-submit">
-           Salvar
-        </button>
+        <button type="submit" class="btn button-submit">Salvar</button>
       </div>
     </div>
   </form>
