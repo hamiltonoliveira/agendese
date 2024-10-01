@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClientesComponent } from './clientes.component';
 
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,10 @@ import { ClientesComponent } from './clientes.component';
   ],
   imports: [
     CommonModule,
-    ClientesRoutingModule
-  ]
+    ClientesRoutingModule,
+    ReactiveFormsModule,
+    NgxMaskDirective
+  ],
+  providers: [provideNgxMask()],
 })
 export class ClientesModule { }

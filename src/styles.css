@@ -2,3 +2,52 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.custom-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.button-submit {
+  background-color: #666;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.button-submit:hover {
+  background-color: #769867;
+}
+
+.button-submit:active {
+  background-color: #d84315;
+  transform: translateY(1px);
+}
+
+.button-submit:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+h2 {
+  font-size: 2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 10px;
+  border-bottom: 2px solid #666;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+

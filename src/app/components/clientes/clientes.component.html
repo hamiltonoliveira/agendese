@@ -1,1 +1,133 @@
-<p>clientes works!</p>
+<!-- cadastro-cliente.component.html -->
+<div class="custom-container mt-5">
+  <h2 class="mb-4">Registro de Empresas e Profissionais Autônomos</h2>
+  <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="nome" class="form-label">Nome</label>
+        <input
+          id="nome"
+          type="text"
+          class="form-control"
+          formControlName="nome"
+          [ngClass]="{
+            'is-invalid':
+              clienteForm.get('nome')?.invalid &&
+              clienteForm.get('nome')?.touched
+          }"
+        />
+        <div class="invalid-feedback">Nome é obrigatório.</div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="cnpj" class="form-label">CNPJ</label>
+        <input
+          id="cnpj"
+          name="cnpj"
+          type="text"
+          class="form-control"
+          formControlName="cnpj"
+          mask="00.000.000/000-00"
+          [ngClass]="{
+            'is-invalid':
+              clienteForm.get('cnpj')?.invalid &&
+              clienteForm.get('cnpj')?.touched
+          }"
+        />
+        <div class="invalid-feedback">CNPJ é obrigatório.</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="endereco" class="form-label">Endereço</label>
+      <input
+        id="endereco"
+        type="text"
+        class="form-control"
+        formControlName="endereco"
+        [ngClass]="{
+          'is-invalid':
+            clienteForm.get('endereco')?.invalid &&
+            clienteForm.get('endereco')?.touched
+        }"
+      />
+      <div class="invalid-feedback">Endereço é obrigatório.</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="cidade" class="form-label">Cidade</label>
+        <input
+          id="cidade"
+          type="text"
+          class="form-control"
+          formControlName="cidade"
+          [ngClass]="{
+            'is-invalid':
+              clienteForm.get('cidade')?.invalid &&
+              clienteForm.get('cidade')?.touched
+          }"
+        />
+        <div class="invalid-feedback">Cidade é obrigatória.</div>
+      </div>
+
+      <div class="col-md-2">
+        <label for="estado" class="form-label">Estado</label>
+        <input
+          id="estado"
+          type="text"
+          class="form-control"
+          formControlName="estado"
+          [ngClass]="{
+            'is-invalid':
+              clienteForm.get('estado')?.invalid &&
+              clienteForm.get('estado')?.touched
+          }"
+        />
+        <div class="invalid-feedback">Estado é obrigatório.</div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="telefone" class="form-label">Telefone</label>
+        <input
+          id="telefone"
+          type="text"
+          class="form-control"
+          formControlName="telefone"
+          [ngClass]="{
+            'is-invalid':
+              clienteForm.get('telefone')?.invalid &&
+              clienteForm.get('telefone')?.touched
+          }"
+        />
+        <div class="invalid-feedback">Telefone é obrigatório.</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">E-mail</label>
+      <input
+        id="email"
+        type="email"
+        class="form-control"
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid':
+            clienteForm.get('email')?.invalid &&
+            clienteForm.get('email')?.touched
+        }"
+      />
+      <div class="invalid-feedback">E-mail válido é obrigatório.</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6" style="position: relative; top: 27px">
+        <button
+          type="submit"
+          class="btn button-submit">
+           Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

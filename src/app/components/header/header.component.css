@@ -9,10 +9,11 @@
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase; /* Letras maiúsculas */
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .nav-link:hover {
-  color: #ffdd57 !important; /* Cor amarela no hover */
+  color: #000 !important; /* Cor amarela no hover */
   transition: color 0.3s ease;
 }
 
@@ -34,11 +35,12 @@
 .dropdown-item {
   color: #000;
   font-size: 16px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .dropdown-item:hover {
-  background-color: #6a11cb; /* Fundo roxo no hover */
-  color: #ffdd57;
+  background-color: #94a986; /* Fundo roxo no hover */
+  color: #fff;
 }
 
 .dropdown-divider {
