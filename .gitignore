@@ -43,3 +43,4 @@ Thumbs.db
 
 # Ignore the ajuda directory
 /ajuda
+firebase-debug.log
