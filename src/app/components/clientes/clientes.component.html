@@ -103,25 +103,25 @@
       </div>
     </div>
 
-      <div class="row mb-3">
-        <div class="col-md-3">
-          <input
-            id="telefone"
-            type="text"
-            class="form-control"
-            formControlName="telefone"
-            placeholder="Telefone"
-            mask="(00)000-000000"
-            [ngClass]="{
-              'is-invalid':
-                clienteForm.get('telefone')?.invalid &&
-                clienteForm.get('telefone')?.touched
-            }"
-          />
-          <div class="invalid-feedback">Telefone é obrigatório.</div>
-        </div>
-        <div class="col-md-7">
-          <input
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <input
+          id="telefone"
+          type="text"
+          class="form-control"
+          formControlName="telefone"
+          placeholder="Telefone"
+          mask="(00)000-000000"
+          [ngClass]="{
+            'is-invalid':
+              clienteForm.get('telefone')?.invalid &&
+              clienteForm.get('telefone')?.touched
+          }"
+        />
+        <div class="invalid-feedback">Telefone é obrigatório.</div>
+      </div>
+      <div class="col-md-7">
+        <input
           id="email"
           type="email"
           class="form-control"
@@ -134,11 +134,44 @@
           }"
         />
         <div class="invalid-feedback">E-mail válido é obrigatório.</div>
+      </div>
+    </div>
 
-        </div>
+    <div class="row mb-8">
+      <div class="col-md-3">
+        <input
+          id="Password"
+          type="Password"
+          class="form-control"
+          formControlName="Password"
+          placeholder="Password"
+          [ngClass]="{
+            'is-invalid':
+              clienteForm.get('Password')?.invalid &&
+              clienteForm.get('Password')?.touched
+          }"
+        />
+        <div class="invalid-feedback">Senha é obrigatório.</div>
       </div>
 
-      <div class="row mb-3">
+    <div class="col-md-3">
+      <input
+        id="confirmPassword"
+        type="Password"
+        class="form-control"
+        formControlName="confirmPassword"
+        placeholder="Confirma"
+        [ngClass]="{
+          'is-invalid':
+            clienteForm.get('confirmPassword')?.invalid &&
+            clienteForm.get('confirmPassword')?.touched
+        }"
+      />
+      <div class="invalid-feedback">Confirma a Senha é obrigatório.</div>
+    </div>
+  </div>
+
+    <div class="row mb-3">
       <div class="col-md-6" style="position: relative; top: 27px">
         <button type="submit" class="btn button-submit">Salvar</button>
       </div>

@@ -4,6 +4,7 @@ export interface Cliente {
   id?: number;
   nome: string;
   cnpj: string;
+  cep: string;
   endereco: string;
   cidade: string;
   estado: string;

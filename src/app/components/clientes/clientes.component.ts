@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FirebaseClienteService } from 'src/services/firebase-cliente.service';
 
 @Component({
   selector: 'app-clientes',
@@ -31,7 +32,9 @@ export class ClientesComponent implements OnInit {
       cidade: ['', Validators.required],
       estado: ['', [Validators.required]],
       telefone: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      Password: ['', [Validators.required],Validators.minLength(6)],
+      confirmPassword: ['', [Validators.required],Validators.minLength(6)],
     });
   }
 
@@ -41,11 +44,18 @@ isInvalidField(field: string): boolean {
   return control ? control.invalid && control.touched : false;
 }
 
+// criarCliente(): void {
+//   const clienteData = this.clienteForm.value;
+//   this.firebaseClienteService.create(clienteData)
+//     .then(() => console.log('Cliente inserido com sucesso!'))
+//     .catch((error) => console.error('Erro ao inserir cliente: ', error));
+//  }
+
   onSubmit(): void {
    if (this.clienteForm.valid) {
       const clienteData = this.clienteForm.value;
       console.log('Dados do cliente:', clienteData);
-      // Aqui você pode enviar os dados para o backend ou outra ação
+       // Aqui você pode enviar os dados para o backend ou outra ação
     } else {
       this.clienteForm.markAllAsTouched();
     }

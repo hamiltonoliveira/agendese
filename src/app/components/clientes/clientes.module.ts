@@ -7,6 +7,8 @@ import { ClientesComponent } from './clientes.component';
 
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
+import { environment } from 'src/environments/environment.prod';
+
 @NgModule({
   declarations: [
     ClientesComponent
@@ -15,8 +17,8 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     CommonModule,
     ClientesRoutingModule,
     ReactiveFormsModule,
-    NgxMaskDirective
-  ],
+    NgxMaskDirective,
+   ],
   providers: [provideNgxMask()],
 })
 export class ClientesModule { }
