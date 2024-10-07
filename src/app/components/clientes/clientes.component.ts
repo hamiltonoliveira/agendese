@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CepService } from 'src/app/services/cep.service';
 import { FirebaseClienteService } from 'src/services/firebase-cliente.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ClientesComponent implements OnInit {
     { id: 4, nome: 'Tecnologia' }
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private Cep: CepService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -27,37 +28,43 @@ export class ClientesComponent implements OnInit {
     this.clienteForm = this.fb.group({
       nome: ['', [Validators.required]],
       cnpj: ['', [Validators.required]],
-      cep: ['', Validators.required],
-      endereco: ['', Validators.required],
-      cidade: ['', Validators.required],
+      cep: ['', [Validators.required]],
+      endereco: ['', [Validators.required]],
+      cidade: ['', [Validators.required]],
       estado: ['', [Validators.required]],
       telefone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      Password: ['', [Validators.required],Validators.minLength(6)],
-      confirmPassword: ['', [Validators.required],Validators.minLength(6)],
-    });
+      Password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],},
+      { validators: this.senhasIguais });
   }
 
-// Verifica se um campo é inválido e foi tocado
-isInvalidField(field: string): boolean {
-  const control = this.clienteForm.get(field);
-  return control ? control.invalid && control.touched : false;
+buscaCep(){
+  let buscaCep =  this.clienteForm.get("cep")?.value;
+  if(buscaCep != null)
+  this.Cep.getEndereco(buscaCep).subscribe(data=>{
+    this.clienteForm.patchValue({
+      endereco: data.logradouro,
+      bairro: data.bairro,
+      cidade: data.localidade,
+      estado: data.uf
+    });
+  })
 }
 
-// criarCliente(): void {
-//   const clienteData = this.clienteForm.value;
-//   this.firebaseClienteService.create(clienteData)
-//     .then(() => console.log('Cliente inserido com sucesso!'))
-//     .catch((error) => console.error('Erro ao inserir cliente: ', error));
-//  }
+senhasIguais(formGroup: FormGroup): { [key: string]: boolean } | null {
+  const password = formGroup.get('Password')?.value;
+  const confirmPassword = formGroup.get('confirmPassword')?.value;
+  return password === confirmPassword ? null : { senhasDiferentes: true };
+}
 
-  onSubmit(): void {
+onSubmit(): void {
    if (this.clienteForm.valid) {
-      const clienteData = this.clienteForm.value;
-      console.log('Dados do cliente:', clienteData);
-       // Aqui você pode enviar os dados para o backend ou outra ação
-    } else {
-      this.clienteForm.markAllAsTouched();
+    const clienteData = this.clienteForm.value;
+    console.log('Dados do cliente:', clienteData);
+  } else {
+    this.clienteForm.markAllAsTouched();
     }
   }
 }
+

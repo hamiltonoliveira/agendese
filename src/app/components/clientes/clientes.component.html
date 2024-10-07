@@ -58,10 +58,11 @@
         <input
           id="cep"
           type="text"
-          class="form-control"
+          class="form-control corCep"
           placeholder="Cep"
           formControlName="cep"
           mask="00000-000"
+          (change)="buscaCep()"
           [ngClass]="{
             'is-invalid':
               clienteForm.get('cep')?.invalid && clienteForm.get('cep')?.touched
@@ -92,7 +93,7 @@
           type="text"
           class="form-control"
           formControlName="estado"
-          placeholder="UF"
+          placeholder="estado"
           [ngClass]="{
             'is-invalid':
               clienteForm.get('estado')?.invalid &&
@@ -110,7 +111,7 @@
           type="text"
           class="form-control"
           formControlName="telefone"
-          placeholder="Telefone"
+          placeholder="Celular"
           mask="(00)000-000000"
           [ngClass]="{
             'is-invalid':
@@ -173,7 +174,7 @@
 
     <div class="row mb-3">
       <div class="col-md-6" style="position: relative; top: 27px">
-        <button type="submit" class="btn button-submit">Salvar</button>
+        <button type="submit" [disabled]="!clienteForm.valid" class="btn button-submit">Salvar</button>
       </div>
     </div>
   </form>
