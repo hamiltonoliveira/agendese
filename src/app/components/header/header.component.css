@@ -9,7 +9,7 @@
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase; /* Letras maiúsculas */
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .nav-link:hover {
@@ -35,7 +35,7 @@
 .dropdown-item {
   color: #000;
   font-size: 16px;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .dropdown-item:hover {

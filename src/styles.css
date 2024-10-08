@@ -1,7 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .custom-container {
   max-width: 600px;
@@ -50,7 +54,7 @@ h2 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -62,11 +66,35 @@ input[type="text"] {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="password"]:focus {
   border-color: #66afe9;
   box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
   outline: none;
 }
 
+/* Estilizando o placeholder para input de texto e senha */
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  font-family: 'Courier New', monospace; /* Fonte do placeholder */
+  color: #000; /* Cor do texto do placeholder */
+  font-size: 14px; /* Tamanho da fonte do placeholder */
+  font-style: italic; /* Estilo em itálico (opcional) */
+  opacity: 0.8; /* Opacidade do texto do placeholder */
+}
 
+/* Estilizando o placeholder para input de texto e senha */
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+  font-family: 'Courier New', monospace; /* Fonte do placeholder */
+  color: #000; /* Cor do texto do placeholder */
+  font-size: 14px; /* Tamanho da fonte do placeholder */
+  font-style: italic; /* Estilo em itálico (opcional) */
+  opacity: 0.8; /* Opacidade do texto do placeholder */
+}
+
+.titleNome{
+  margin-top: 10px;
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+}
 

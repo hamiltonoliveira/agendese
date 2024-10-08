@@ -1,181 +1,200 @@
-<div class="custom-container card-custumer">
-  <h2 class="mb-2">Registro de Empresas e Profissionais Autônomos</h2>
-  <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <input
-          id="nome"
-          type="text"
-          class="form-control"
-          formControlName="nome"
-          placeholder="Razão Social"
-          [ngClass]="{
-            'is-invalid':
-              clienteForm.get('nome')?.invalid &&
-              clienteForm.get('nome')?.touched
-          }"
-        />
-        <div class="invalid-feedback">Nome é obrigatório.</div>
-      </div>
+<div class="custom-container">
+  <br />
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">
+        <span class="title">
+          <img src="./../../../assets/img/logo.jpg" class="card-img-top logo" />
+          <span class="titleNome">
+            Registro de Empresas e Profissionais Autônomos
+          </span>
+        </span>
+      </h3>
+      <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <input
+              id="nome"
+              type="text"
+              class="form-control"
+              formControlName="nome"
+              placeholder="Razão Social"
+              [ngClass]="{
+                'is-invalid':
+                  clienteForm.get('nome')?.invalid &&
+                  clienteForm.get('nome')?.touched
+              }"
+            />
+            <div class="invalid-feedback">Nome é obrigatório.</div>
+          </div>
 
-      <div class="col-md-6">
-        <input
-          id="cnpj"
-          name="cnpj"
-          type="text"
-          class="form-control"
-          formControlName="cnpj"
-          placeholder="CNPJ"
-          mask="00.000.000/0000-00"
-          [ngClass]="{
-            'is-invalid':
-              clienteForm.get('cnpj')?.invalid &&
-              clienteForm.get('cnpj')?.touched
-          }"
-        />
-        <div class="invalid-feedback">CNPJ é obrigatório.</div>
-      </div>
-    </div>
+          <div class="col-md-6">
+            <input
+              id="cnpj"
+              name="cnpj"
+              type="text"
+              class="form-control"
+              formControlName="cnpj"
+              placeholder="CNPJ"
+              mask="00.000.000/0000-00"
+              [ngClass]="{
+                'is-invalid':
+                  clienteForm.get('cnpj')?.invalid &&
+                  clienteForm.get('cnpj')?.touched
+              }"
+            />
+            <div class="invalid-feedback">CNPJ é obrigatório.</div>
+          </div>
+        </div>
 
-    <div class="mb-3">
-      <input
-        id="endereco"
-        type="text"
-        class="form-control"
-        formControlName="endereco"
-        placeholder="Endereço"
-        [ngClass]="{
-          'is-invalid':
-            clienteForm.get('endereco')?.invalid &&
-            clienteForm.get('endereco')?.touched
-        }"
-      />
-      <div class="invalid-feedback">Endereço é obrigatório.</div>
-    </div>
+        <div class="mb-3">
+          <input
+            id="endereco"
+            type="text"
+            class="form-control"
+            formControlName="endereco"
+            placeholder="Endereço"
+            [ngClass]="{
+              'is-invalid':
+                clienteForm.get('endereco')?.invalid &&
+                clienteForm.get('endereco')?.touched
+            }"
+          />
+          <div class="invalid-feedback">Endereço é obrigatório.</div>
+        </div>
 
-    <div class="row mb-3">
-      <div class="col-md-3">
-        <input
-          id="cep"
-          type="text"
-          class="form-control corCep"
-          placeholder="Cep"
-          formControlName="cep"
-          mask="00000-000"
-          (change)="buscaCep()"
-          [ngClass]="{
-            'is-invalid':
-              clienteForm.get('cep')?.invalid && clienteForm.get('cep')?.touched
-          }"
-        />
-        <div class="invalid-feedback">Cep é obrigatória.</div>
-      </div>
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <input
+              id="cep"
+              type="text"
+              class="form-control corCep"
+              placeholder="Cep"
+              formControlName="cep"
+              mask="00000-000"
+              (change)="buscaCep()"
+              [ngClass]="{
+                'is-invalid':
+                  clienteForm.get('cep')?.invalid &&
+                  clienteForm.get('cep')?.touched
+              }"
+            />
+            <div class="invalid-feedback">Cep é obrigatória.</div>
+          </div>
 
-      <div class="col-md-7">
-        <input
-          id="cidade"
-          type="text"
-          class="form-control"
-          placeholder="Cidade"
-          formControlName="cidade"
-          [ngClass]="{
-            'is-invalid':
-              clienteForm.get('cidade')?.invalid &&
-              clienteForm.get('cidade')?.touched
-          }"
-        />
-        <div class="invalid-feedback">Cidade é obrigatória.</div>
-      </div>
+          <div class="col-md-7">
+            <input
+              id="cidade"
+              type="text"
+              class="form-control"
+              placeholder="Cidade"
+              formControlName="cidade"
+              [ngClass]="{
+                'is-invalid':
+                  clienteForm.get('cidade')?.invalid &&
+                  clienteForm.get('cidade')?.touched
+              }"
+            />
+            <div class="invalid-feedback">Cidade é obrigatória.</div>
+          </div>
 
-      <div class="col-md-2">
-        <input
-          id="estado"
-          type="text"
-          class="form-control"
-          formControlName="estado"
-          placeholder="estado"
-          [ngClass]="{
-            'is-invalid':
-              clienteForm.get('estado')?.invalid &&
-              clienteForm.get('estado')?.touched
-          }"
-        />
-        <div class="invalid-feedback">Estado é obrigatório.</div>
-      </div>
-    </div>
+          <div class="col-md-2">
+            <input
+              id="estado"
+              type="text"
+              class="form-control"
+              formControlName="estado"
+              placeholder="UF"
+              [ngClass]="{
+                'is-invalid':
+                  clienteForm.get('estado')?.invalid &&
+                  clienteForm.get('estado')?.touched
+              }"
+            />
+            <div class="invalid-feedback">Estado é obrigatório.</div>
+          </div>
+        </div>
 
-    <div class="row mb-3">
-      <div class="col-md-3">
-        <input
-          id="telefone"
-          type="text"
-          class="form-control"
-          formControlName="telefone"
-          placeholder="Celular"
-          mask="(00)000-000000"
-          [ngClass]="{
-            'is-invalid':
-              clienteForm.get('telefone')?.invalid &&
-              clienteForm.get('telefone')?.touched
-          }"
-        />
-        <div class="invalid-feedback">Telefone é obrigatório.</div>
-      </div>
-      <div class="col-md-7">
-        <input
-          id="email"
-          type="email"
-          class="form-control"
-          formControlName="email"
-          placeholder="E-mail"
-          [ngClass]="{
-            'is-invalid':
-              clienteForm.get('email')?.invalid &&
-              clienteForm.get('email')?.touched
-          }"
-        />
-        <div class="invalid-feedback">E-mail válido é obrigatório.</div>
-      </div>
-    </div>
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <input
+              id="telefone"
+              type="text"
+              class="form-control"
+              formControlName="telefone"
+              placeholder="Celular"
+              mask="(00)000-000000"
+              [ngClass]="{
+                'is-invalid':
+                  clienteForm.get('telefone')?.invalid &&
+                  clienteForm.get('telefone')?.touched
+              }"
+            />
+            <div class="invalid-feedback">Telefone é obrigatório.</div>
+          </div>
+          <div class="col-md-7">
+            <input
+              id="email"
+              type="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="E-mail"
+              [ngClass]="{
+                'is-invalid':
+                  clienteForm.get('email')?.invalid &&
+                  clienteForm.get('email')?.touched
+              }"
+            />
+            <div class="invalid-feedback">E-mail válido é obrigatório.</div>
+          </div>
+        </div>
 
-    <div class="row mb-8">
-      <div class="col-md-3">
-        <input
-          id="Password"
-          type="Password"
-          class="form-control"
-          formControlName="Password"
-          placeholder="Password"
-          [ngClass]="{
-            'is-invalid':
-              clienteForm.get('Password')?.invalid &&
-              clienteForm.get('Password')?.touched
-          }"
-        />
-        <div class="invalid-feedback">Senha é obrigatório.</div>
-      </div>
+        <div class="row mb-8">
+          <div class="col-md-3">
+            <input
+              id="Password"
+              type="Password"
+              class="form-control"
+              formControlName="Password"
+              placeholder="Password"
+              [ngClass]="{
+                'is-invalid':
+                  clienteForm.get('Password')?.invalid &&
+                  clienteForm.get('Password')?.touched
+              }"
+            />
+            <div class="invalid-feedback">Senha é obrigatório.</div>
+          </div>
 
-    <div class="col-md-3">
-      <input
-        id="confirmPassword"
-        type="Password"
-        class="form-control"
-        formControlName="confirmPassword"
-        placeholder="Confirma"
-        [ngClass]="{
-          'is-invalid':
-            clienteForm.get('confirmPassword')?.invalid &&
-            clienteForm.get('confirmPassword')?.touched
-        }"
-      />
-      <div class="invalid-feedback">Confirma a Senha é obrigatório.</div>
+          <div class="col-md-3">
+            <input
+              id="confirmPassword"
+              type="Password"
+              class="form-control"
+              formControlName="confirmPassword"
+              placeholder="Confirma"
+              [ngClass]="{
+                'is-invalid':
+                  clienteForm.get('confirmPassword')?.invalid &&
+                  clienteForm.get('confirmPassword')?.touched
+              }"
+            />
+            <div class="invalid-feedback">Confirma a Senha é obrigatório.</div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6" style="position: relative; top: 27px">
+            <button
+              type="submit"
+              [disabled]="!clienteForm.valid"
+              class="btn button-submit"
+            >
+              Salvar
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-
-    <div class="row mb-3">
-      <div class="col-md-6" style="position: relative; top: 27px">
-        <button type="submit" [disabled]="!clienteForm.valid" class="btn button-submit">Salvar</button>
-      </div>
-    </div>
-  </form>
 </div>
