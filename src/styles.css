@@ -92,6 +92,15 @@ input[type="email"]::placeholder {
   opacity: 0.8; /* Opacidade do texto do placeholder */
 }
 
+.submit {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  color: #333;
+}
+
 .titleNome{
   margin-top: 10px;
   color: black;
