@@ -13,4 +13,6 @@ export interface Cliente {
   setor?: Setor | null;
   dataCadastro: Date;
   ativo: boolean;
+  Password:string;
+  confirmPassword:string;
 }

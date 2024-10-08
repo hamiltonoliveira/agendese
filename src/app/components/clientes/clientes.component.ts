@@ -34,8 +34,8 @@ export class ClientesComponent implements OnInit {
         estado: ['', [Validators.required]],
         telefone: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        Password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
       },
       { validators: this.senhasIguais }
     );
@@ -55,7 +55,7 @@ export class ClientesComponent implements OnInit {
   }
 
   senhasIguais(formGroup: FormGroup): { [key: string]: boolean } | null {
-    const password = formGroup.get('Password')?.value;
+    const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { senhasDiferentes: true };
   }

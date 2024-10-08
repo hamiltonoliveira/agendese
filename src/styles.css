@@ -12,19 +12,6 @@ body {
   margin: 0 auto;
 }
 
-.button-submit {
-  background-color: #666;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  height: 40px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* Efeito ao passar o mouse sobre o botão */
 .button-submit:hover {
   background-color: #769867;
 }
@@ -98,8 +85,9 @@ input[type="email"]::placeholder {
   border-radius: 4px;
   font-size: 14px;
   font-family: 'Courier New', monospace;
-  color: #333;
+  color: white;
 }
+
 
 .titleNome{
   margin-top: 10px;

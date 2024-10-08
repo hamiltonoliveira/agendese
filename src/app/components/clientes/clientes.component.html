@@ -155,7 +155,7 @@
               id="Password"
               type="Password"
               class="form-control"
-              formControlName="Password"
+              formControlName="password"
               placeholder="Password"
               [ngClass]="{
                 'is-invalid':
@@ -179,7 +179,7 @@
                   clienteForm.get('confirmPassword')?.touched
               }"
             />
-            <div class="invalid-feedback">Confirma a Senha é obrigatório.</div>
+            <div class="invalid-feedback">Confirmar a Senha.</div>
           </div>
         </div>
 
@@ -188,7 +188,7 @@
             <button
               type="submit"
               [disabled]="!clienteForm.valid"
-              class="btn btn-outline-success">
+              class="btn btn-secondary">
               <span class="submit">Salvar</span>
             </button>
           </div>
