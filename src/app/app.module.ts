@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FirebaseClienteService } from './../services/firebase-cliente.service';
-
+import { LocalStorageService } from 'src/services/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { FirebaseClienteService } from './../services/firebase-cliente.service';
     BrowserAnimationsModule,
     HttpClientModule
    ],
-  providers: [FirebaseClienteService],
+  providers: [FirebaseClienteService,LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

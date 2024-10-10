@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CepService } from 'src/app/services/cep.service';
 import { FirebaseClienteService } from 'src/services/firebase-cliente.service';
+import { LocalStorageService } from 'src/services/local-storage.service';
 
 @Component({
   selector: 'app-clientes',
@@ -17,7 +18,9 @@ export class ClientesComponent implements OnInit {
     { id: 4, nome: 'Tecnologia' },
   ];
 
-  constructor(private fb: FormBuilder, private Cep: CepService) {}
+  constructor(private fb: FormBuilder,
+              private Cep: CepService,
+              private localStorageService:LocalStorageService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -130,6 +133,7 @@ export class ClientesComponent implements OnInit {
     if (this.clienteForm.valid) {
       const clienteData = this.clienteForm.value;
       console.log('Dados do cliente:', clienteData);
+      this.localStorageService.setItem('cliente',clienteData)
     } else {
       this.clienteForm.markAllAsTouched();
       console.log('Formulário inválido');
