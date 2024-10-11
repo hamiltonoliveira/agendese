@@ -72,20 +72,15 @@ input[type="text"]:focus, input[type="password"]:focus {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-.submit {
-  width: 100%;
-  padding: 5px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-family: 'Courier New', monospace;
-  color: white;
+.btn-secondary {
+  background: #708090 !important;
+  color: white !important;
+  font-family: Roboto,'Courier New', monospace;
 }
 
-
 .titleNome{
-  margin-top: 10px;
   color: black;
   font-family: 'Courier New', Courier, monospace;
 }
+
 

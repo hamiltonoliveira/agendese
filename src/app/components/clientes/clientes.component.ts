@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CepService } from 'src/app/services/cep.service';
+import { CriptografiaService } from 'src/services/criptografia.service';
 import { FirebaseClienteService } from 'src/services/firebase-cliente.service';
 import { LocalStorageService } from 'src/services/local-storage.service';
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-clientes',
@@ -11,16 +14,12 @@ import { LocalStorageService } from 'src/services/local-storage.service';
 })
 export class ClientesComponent implements OnInit {
   clienteForm!: FormGroup;
-  setores = [
-    { id: 1, nome: 'Comercial' },
-    { id: 2, nome: 'Financeiro' },
-    { id: 3, nome: 'Recursos Humanos' },
-    { id: 4, nome: 'Tecnologia' },
-  ];
 
   constructor(private fb: FormBuilder,
               private Cep: CepService,
-              private localStorageService:LocalStorageService) {}
+              private localStorageService:LocalStorageService,
+              private cripto:CriptografiaService,
+              private toastrService: ToastrService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -132,12 +131,26 @@ export class ClientesComponent implements OnInit {
 
     if (this.clienteForm.valid) {
       const clienteData = this.clienteForm.value;
-      console.log('Dados do cliente:', clienteData);
+      clienteData.password = this.cripto.criptografar(clienteData.password);
+      delete clienteData.confirmPassword;
       this.localStorageService.setItem('cliente',clienteData)
+      this.showInfo();
     } else {
       this.clienteForm.markAllAsTouched();
-      console.log('Formulário inválido');
     }
   }
+
+  public showInfo(): void {
+    this.toastrService.success('Registro efetuado');
+  }
+
+  public showWarning(): void {
+    this.toastrService.warning('Message Warning!', 'Title Warning!');
+  }
+
+  public showError(): void {
+    this.toastrService.error('Preencha todos os dados', 'Formulário');
+  }
+
 }
 
