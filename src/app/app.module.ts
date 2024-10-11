@@ -11,6 +11,7 @@ import { FirebaseClienteService } from './../services/firebase-cliente.service';
 import { LocalStorageService } from 'src/services/local-storage.service';
 
 import { provideToastr, ToastrModule } from 'ngx-toastr';
+import { GuidService } from 'src/services/guid.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
     HttpClientModule
    ],
   providers: [FirebaseClienteService,
-              LocalStorageService,],
+              LocalStorageService,
+              GuidService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

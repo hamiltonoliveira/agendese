@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CepService } from 'src/app/services/cep.service';
 import { CriptografiaService } from 'src/services/criptografia.service';
-import { FirebaseClienteService } from 'src/services/firebase-cliente.service';
 import { LocalStorageService } from 'src/services/local-storage.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { GuidService } from 'src/services/guid.service';
 
 @Component({
   selector: 'app-clientes',
@@ -19,7 +19,8 @@ export class ClientesComponent implements OnInit {
               private Cep: CepService,
               private localStorageService:LocalStorageService,
               private cripto:CriptografiaService,
-              private toastrService: ToastrService) {}
+              private toastrService: ToastrService,
+              private guidService: GuidService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -28,6 +29,7 @@ export class ClientesComponent implements OnInit {
   private initForm(): void {
     this.clienteForm = this.fb.group(
       {
+        id:[''],
         nome: ['', [Validators.required]],
         cnpj: ['', [Validators.required]],
         cep: ['', [Validators.required]],
@@ -131,8 +133,9 @@ export class ClientesComponent implements OnInit {
 
     if (this.clienteForm.valid) {
       const clienteData = this.clienteForm.value;
-      clienteData.password = this.cripto.criptografar(clienteData.password);
       delete clienteData.confirmPassword;
+      clienteData.password = this.cripto.criptografar(clienteData.password);
+      clienteData.id = this.guidService.standard();
       this.localStorageService.setItem('cliente',clienteData)
       this.showInfo();
     } else {
