@@ -10,13 +10,17 @@ export class CriptografiaService {
 
   constructor() { }
 
-  criptografar(dados: string): string {
-    return CryptoJS.AES.encrypt(dados, this.chaveSecreta).toString();
-  }
 
-  descriptografar(dadosCriptografados: string): string {
-    const bytes = CryptoJS.AES.decrypt(dadosCriptografados, this.chaveSecreta);
-    return bytes.toString(CryptoJS.enc.Utf8);
-  }
+  criptografar(senha: string): string {
+    if (!this.chaveSecreta) {
+      throw new Error('Chave secreta não definida.');
+    }
+    const chaveFormatada = String(this.chaveSecreta);
+    const chaveCriptografada = CryptoJS.AES.encrypt(chaveFormatada, chaveFormatada).toString();
 
+    const senhaFormatada = String(senha);
+    const senhaCriptografada = CryptoJS.AES.encrypt(senhaFormatada, chaveCriptografada).toString();
+    const resultadoConcatenado = `${chaveCriptografada}${senhaCriptografada}`;
+    return resultadoConcatenado;
+  }
 }

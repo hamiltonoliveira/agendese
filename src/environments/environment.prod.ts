@@ -1,12 +1,12 @@
 export const environment = {
   firebase: {
-  apiKey: "AIzaSyBSsYvmLqyrGJEI2Gvb2DqsU0djqIFT4_4",
-  authDomain: "agendese-1e532.firebaseapp.com",
-  projectId: "agendese-1e532",
-  storageBucket: "agendese-1e532.appspot.com",
-  messagingSenderId: "886758225691",
-  appId: "1:886758225691:web:c51bdba6e2cecdecd545be",
-  measurementId: "G-FBVEMGHCBS"
+    apiKey: "AIzaSyA2btLodfdmp3Pq4qjD0Th3huXARhUXWw8",
+    authDomain: "vagas-15605.firebaseapp.com",
+    projectId: "vagas-15605",
+    storageBucket: "vagas-15605.appspot.com",
+    messagingSenderId: "861447827413",
+    appId: "1:861447827413:web:d13eb950e6009ec7c3d75c",
+    measurementId: "G-0QMCBRB2BK"
   },
   production: true,
   useEmulators: false,

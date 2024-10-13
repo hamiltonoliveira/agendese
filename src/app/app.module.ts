@@ -12,11 +12,13 @@ import { LocalStorageService } from 'src/services/local-storage.service';
 
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { GuidService } from 'src/services/guid.service';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
