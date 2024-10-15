@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CepService } from 'src/app/services/cep.service';
 import { CriptografiaService } from 'src/services/criptografia.service';
 import { LocalStorageService } from 'src/services/local-storage.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { GuidService } from 'src/services/guid.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-clientes',
@@ -14,32 +15,37 @@ import { GuidService } from 'src/services/guid.service';
 })
 export class ClientesComponent implements OnInit {
   clienteForm!: FormGroup;
+  dados: any;
+
+  nome:string='';
 
   constructor(private fb: FormBuilder,
               private Cep: CepService,
               private localStorageService:LocalStorageService,
               private cripto:CriptografiaService,
               private toastrService: ToastrService,
-              private guidService: GuidService) {}
+              private guidService: GuidService,
+              private apiService:ApiService) {}
 
   ngOnInit(): void {
     this.initForm();
-  }
+    this.preencherForm();
+   }
 
   private initForm(): void {
     this.clienteForm = this.fb.group(
       {
-        id:[''],
-        nome: ['', [Validators.required]],
-        cnpj: ['', [Validators.required]],
-        cep: ['', [Validators.required]],
-        endereco: ['', [Validators.required]],
-        cidade: ['', [Validators.required]],
-        estado: ['', [Validators.required]],
-        telefone: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+        guid: new FormControl(['']),
+        nome: new FormControl(['', [Validators.required]]),
+        cnpj: new FormControl(['', [Validators.required]]),
+        cep:  new FormControl(['', [Validators.required]]),
+        endereco:  new FormControl(['', [Validators.required]]),
+        cidade:  new FormControl(['', [Validators.required]]),
+        estado:  new FormControl(['', [Validators.required]]),
+        telefone:  new FormControl(['', [Validators.required]]),
+        email:  new FormControl(['', [Validators.required, Validators.email]]),
+        password:  new FormControl(['', [Validators.required, Validators.minLength(6)]]),
+        confirmPassword:  new FormControl(['', [Validators.required, Validators.minLength(6)]])
       },
       { validators: this.senhasIguais }
     );
@@ -65,7 +71,6 @@ export class ClientesComponent implements OnInit {
   }
 
   validarCNPJ(): { [key: string]: boolean } | null {
-    // 53.355.714/0001-89
     const cnpj = this.clienteForm.get('cnpj')?.value;
 
     if (!cnpj) {
@@ -135,8 +140,9 @@ export class ClientesComponent implements OnInit {
       const clienteData = this.clienteForm.value;
       delete clienteData.confirmPassword;
       clienteData.password = this.cripto.criptografar(clienteData.password);
-      clienteData.id = this.guidService.standard();
+      clienteData.guid = this.guidService.standard();
       this.localStorageService.setItem('cliente',clienteData)
+      this.apiService.addCliente(clienteData);
       this.showInfo();
     } else {
       this.clienteForm.markAllAsTouched();
@@ -153,6 +159,34 @@ export class ClientesComponent implements OnInit {
 
   public showError(): void {
     this.toastrService.error('Preencha todos os dados', 'Formulário');
+  }
+
+  preencherForm(){
+   this.dados = this.localStorageService.getItem('cliente');
+   if(this.dados){
+    const nome = this.dados['nome'];
+    const cnpc = this.dados['cnpj'];
+    const cep = this.dados['cep'];
+    const endereco = this.dados['endereco'];
+    const cidade = this.dados['cidade'];
+    const estado = this.dados['estado'];
+    const telefone = this.dados['telefone'];
+    const email = this.dados['email'];
+
+    this.clienteForm.patchValue({
+      nome: nome,
+      cnpc:cnpc,
+      cep:cep,
+      endereco:endereco,
+      cidade:cidade,
+      estado:estado,
+      telefone:telefone,
+      email:email,
+      password:'',
+      confirmPassword:''
+    });
+
+   }
   }
 
 }

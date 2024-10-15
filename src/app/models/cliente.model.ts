@@ -1,7 +1,7 @@
 import { Setor } from './setor.model';
 
 export interface Cliente {
-  id?: number;
+  guid?: string;
   nome: string;
   cnpj: string;
   cep: string;
@@ -10,9 +10,6 @@ export interface Cliente {
   estado: string;
   telefone: string;
   email: string;
-  setor?: Setor | null;
-  dataCadastro: Date;
   ativo: boolean;
-  Password:string;
-  confirmPassword:string;
+  password:string;
 }
