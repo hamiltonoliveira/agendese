@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { InitSupaBase } from '../utils/InitSupaBase';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 import { Cliente } from '../models/cliente.model';
+
+import { corsHeaders } from './../../../shared/cors';
 
 @Injectable({
   providedIn: 'root'
@@ -9,25 +12,25 @@ import { Cliente } from '../models/cliente.model';
 export class ApiService {
   supabaseUrl = InitSupaBase.supabaseUrl;
   supabaseKey =   InitSupaBase.supabaseKey;
-  supabase: SupabaseClient;
 
-  constructor(){
-    this.supabase = createClient(this.supabaseUrl, this.supabaseKey);
-   }
 
-   async addCliente(cliente: Cliente) {
-    try {
-      const { data, error } = await this.supabase
-        .from('cliente')
-        .insert(cliente)
-        .select();
-      if (error) {
-        console.error('Erro ao adicionar cliente:', error);
-       } else {
-        console.log('Cliente adicionado com sucesso:', data);
-      }
-    } catch (err) {
-      console.error('Ocorreu um erro inesperado:', err);
-    }
+  constructor(private http: HttpClient){}
+
+  addClient(clientData: Cliente): Observable<Cliente> {
+    const headers = new HttpHeaders({
+      ...corsHeaders,
+      'Authorization': `apikey ${this.supabaseKey}`,
+      'Content-Type': 'application/json'
+    });
+
+    console.log({headers})
+
+    return this.http.post<Cliente>(this.supabaseUrl, clientData, { headers });
   }
-}
+
+
+  }
+
+
+
+

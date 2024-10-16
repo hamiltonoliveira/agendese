@@ -7,6 +7,7 @@ import { LocalStorageService } from 'src/services/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { GuidService } from 'src/services/guid.service';
 import { ApiService } from 'src/app/services/api.service';
+import { Cliente } from 'src/app/models/cliente.model';
 
 @Component({
   selector: 'app-clientes',
@@ -16,8 +17,6 @@ import { ApiService } from 'src/app/services/api.service';
 export class ClientesComponent implements OnInit {
   clienteForm!: FormGroup;
   dados: any;
-
-  nome:string='';
 
   constructor(private fb: FormBuilder,
               private Cep: CepService,
@@ -35,17 +34,17 @@ export class ClientesComponent implements OnInit {
   private initForm(): void {
     this.clienteForm = this.fb.group(
       {
-        guid: new FormControl(['']),
-        nome: new FormControl(['', [Validators.required]]),
-        cnpj: new FormControl(['', [Validators.required]]),
-        cep:  new FormControl(['', [Validators.required]]),
-        endereco:  new FormControl(['', [Validators.required]]),
-        cidade:  new FormControl(['', [Validators.required]]),
-        estado:  new FormControl(['', [Validators.required]]),
-        telefone:  new FormControl(['', [Validators.required]]),
-        email:  new FormControl(['', [Validators.required, Validators.email]]),
-        password:  new FormControl(['', [Validators.required, Validators.minLength(6)]]),
-        confirmPassword:  new FormControl(['', [Validators.required, Validators.minLength(6)]])
+        guid: [''],
+        nome: ['', [Validators.required]],
+        cnpj: ['', [Validators.required]],
+        cep:  ['', [Validators.required]],
+        endereco: ['', [Validators.required]],
+        cidade:  ['', [Validators.required]],
+        estado:  ['', [Validators.required]],
+        telefone:  ['', [Validators.required]],
+        email:  ['', [Validators.required, Validators.email]],
+        password:  ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword:  ['', [Validators.required, Validators.minLength(6)]]
       },
       { validators: this.senhasIguais }
     );
@@ -142,7 +141,7 @@ export class ClientesComponent implements OnInit {
       clienteData.password = this.cripto.criptografar(clienteData.password);
       clienteData.guid = this.guidService.standard();
       this.localStorageService.setItem('cliente',clienteData)
-      this.apiService.addCliente(clienteData);
+      this.apiService.addClient(clienteData);
       this.showInfo();
     } else {
       this.clienteForm.markAllAsTouched();
@@ -161,33 +160,35 @@ export class ClientesComponent implements OnInit {
     this.toastrService.error('Preencha todos os dados', 'Formulário');
   }
 
-  preencherForm(){
-   this.dados = this.localStorageService.getItem('cliente');
-   if(this.dados){
-    const nome = this.dados['nome'];
-    const cnpc = this.dados['cnpj'];
-    const cep = this.dados['cep'];
-    const endereco = this.dados['endereco'];
-    const cidade = this.dados['cidade'];
-    const estado = this.dados['estado'];
-    const telefone = this.dados['telefone'];
-    const email = this.dados['email'];
-
+  preencherForm() {
+    this.dados = this.localStorageService.getItem('cliente');
+    if (this.dados && Object.keys(this.dados).length > 0) {
+      const { nome, cnpj, cep, endereco, cidade, estado, telefone, email } = this.dados;
     this.clienteForm.patchValue({
-      nome: nome,
-      cnpc:cnpc,
-      cep:cep,
-      endereco:endereco,
-      cidade:cidade,
-      estado:estado,
-      telefone:telefone,
-      email:email,
-      password:'',
-      confirmPassword:''
-    });
-
-   }
+        nome: nome || '',
+        cnpj: cnpj || '',
+        cep: cep || '',
+        endereco: endereco || '',
+        cidade: cidade || '',
+        estado: estado || '',
+        telefone: telefone || '',
+        email: email || '',
+        password: '',
+        confirmPassword: ''
+      });
+    }
   }
 
+  enviarDados(dados:Cliente): void {
+    this.apiService.addClient(this.dados).subscribe({
+      next: (resposta) => {
+        console.log('Dados enviados com sucesso:', resposta);
+      },
+      error: (erro) => {
+        console.error('Erro ao enviar dados:', erro);
+      }
+    });
+  }
 }
+
 
