@@ -140,8 +140,8 @@ export class ClientesComponent implements OnInit {
       delete clienteData.confirmPassword;
       clienteData.password = this.cripto.criptografar(clienteData.password);
       clienteData.guid = this.guidService.standard();
-      this.localStorageService.setItem('cliente',clienteData)
-      this.apiService.addClient(clienteData);
+      this.localStorageService.setItem('cliente',clienteData);
+      this.enviarDados(clienteData);
       this.showInfo();
     } else {
       this.clienteForm.markAllAsTouched();
